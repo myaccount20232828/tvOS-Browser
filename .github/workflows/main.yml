@@ -11,7 +11,7 @@ jobs:
             Scheme="Browser"
             XCProject="_Project/Browser.xcodeproj"
             xcodebuild -jobs $(sysctl -n hw.ncpu) -project "$XCProject" -scheme "$Scheme" -configuration Release -arch arm64 -sdk appletvos -derivedDataPath "$TMPDIR" CODE_SIGNING_ALLOWED=NO DSTROOT=$AppTMP/install ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES=NO
-            cp "$(echo $TMPDIR/Build/Products/Release*/*.app)" .
+            cp -r "$(echo $TMPDIR/Build/Products/Release*/*.app)" .
             cp "$(echo *.app)/Browser" Browser
      - name: Git Push
        run: |
